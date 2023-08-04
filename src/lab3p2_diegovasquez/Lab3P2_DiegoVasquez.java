@@ -171,16 +171,79 @@ public class Lab3P2_DiegoVasquez {
                     }//fin valid
                     Motocicleta moto = new Motocicleta(vel, peso, litros, placa, marca, modelo, tipo, color, Año);
                     vehiculos.add(moto);
+                    //agregar la moto al array
                     System.out.println("Moto agregada exitosamente!");
-                    //agregar la moto al arraylist
                 }//fin case
                 break;
                 case 3:{
-                    
+                    //Autobus
+                    lea = new Scanner(System.in);
+                    System.out.println("Ingrese la placa: ");
+                    String placa = lea.next().toUpperCase();
+                    boolean valid = true;
+                    while(valid){
+                        boolean placaRep = false;
+                        for (int i = 0; i < 10; i++) {
+                            if(placa.equalsIgnoreCase(vehiculos.get(i).getPlaca())){
+                                placaRep = true;
+                            }
+                        }//fin for
+                        if(placaRep == false){
+                            if(placa.startsWith("B")){
+                                if(ValidPlaca(placa)){
+                                    valid = false;
+                                }else{
+                                    System.out.println("Placa invalida, intentela de nuevo");
+                                    placa = lea.next().toUpperCase();
+                                }//fin else
+                            }else{
+                                System.out.println("Placa invalida, intentela de nuevo");
+                                placa = lea.next().toUpperCase();
+                            }//fin else
+                        }else{
+                            System.out.println("Placa Repetida \nIngrese otra: ");
+                            placa = lea.next();
+                        }//fin else placa repetida
+                    }//fin valid placa
+                    System.out.println("Ingrese la marca: ");
+                    String marca = lea.next();
+                    System.out.println("Ingrese el modelo: ");
+                    String modelo = lea.next();
+                    System.out.println("Ingrese su tipo: (Turismo, de Ruta, rapidito)");
+                    String tipo = lea.next();
+                    Color color = JColorChooser.showDialog(null, "Ingrese el Color", Color.WHITE);
+                    System.out.println("Ingrese el año: yyyy");
+                    String año = lea.next();
+                    Date Año = df.parse(año);
+                    System.out.println("Ingrese la capacidad de pasajeros: ");
+                    int cap = lea.nextInt();
+                    while(cap < 0){
+                        System.out.println("Capacidad invalida \nIntentelo de nuevo: ");
+                        cap = lea.nextInt();
+                    }
+                    System.out.println("Ingrese la cantidad de ejes: ");
+                    int ejes = lea.nextInt();
+                    while(ejes <0){
+                        System.out.println("Numero invalido \nIntentelo de nuevo: ");
+                        ejes = lea.nextInt();
+                    }
+                    System.out.println("Ingrese la Longitud: ");
+                    double lon = lea.nextDouble();
+                    while(lon < 0){
+                        System.out.println("Invalido, Intentelo de nuevo: ");
+                        lon = lea.nextDouble();
+                    }
+                    Autobus bus = new Autobus(cap, ejes, lon, placa, marca, modelo, tipo, color, Año);
+                    //agregar bus al array
+                    vehiculos.add(bus);
+                    System.out.println("Autobus agregado exitosamente!"); 
                 }//fin case
                 break;
                 case 4:{
-                    
+                    for (int i = 0; i < vehiculos.size(); i++) {
+                        System.out.println("Vehiculo "+i+"\n"+vehiculos.get(i).toString());
+                        System.out.println("");
+                    }//fin listar.
                 }//fin case
                 break;
                 case 5:{
