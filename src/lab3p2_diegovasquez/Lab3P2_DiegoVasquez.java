@@ -403,11 +403,48 @@ public class Lab3P2_DiegoVasquez {
                 }//fin case
                 break;
                 case 6:{
-                    
+                    int contAutos = 0;
+                    int contBuses = 0;
+                    int contMotos = 0;
+                    for (int i = 0; i < vehiculos.size(); i++) {
+                        System.out.println("Vehiculo "+i+"\n");
+                        if(vehiculos.get(i) instanceof Automovil){
+                            System.out.println(((Automovil)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            contAutos++;
+                        }else if(vehiculos.get(i) instanceof Autobus){
+                            System.out.println(((Autobus)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            contBuses++;
+                        }else{
+                            System.out.println(((Motocicleta)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            contMotos++;
+                        }
+                    }
+                    System.out.println("Cantidad total de Automoviles: "+contAutos);
+                    System.out.println("Cantidad total de Buses: "+contBuses);
+                    System.out.println("Cantidad total de Motos: "+contMotos);
                 }//fin case
                 break;
                 case 7:{
-                    
+                    //generar boleta
+                    for (int i = 0; i < vehiculos.size(); i++) {
+                        System.out.println("Vehiculo "+i+"\n");
+                        if(vehiculos.get(i) instanceof Automovil){
+                            System.out.println(((Automovil)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }else if(vehiculos.get(i) instanceof Autobus){
+                            System.out.println(((Autobus)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }else{
+                            System.out.println(((Motocicleta)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }
+                    }
                 }//fin case
                 break;
                 case 8:{
@@ -415,7 +452,7 @@ public class Lab3P2_DiegoVasquez {
                 }//fin case
                 break;
                 default:{
-                    
+                    System.out.println("Opcion Invalida \nIntentelo de nuevo: ");
                 }//fin default
                 break;
             }
