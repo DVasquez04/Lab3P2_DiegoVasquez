@@ -111,7 +111,8 @@ public class Automovil extends Vehiculo{
 
     @Override
     public String toString() {
-        return "Automovil{" + "TipoCombustible=" + TipoCombustible + ", NumPuertas=" + NumPuertas + ", TipoTransmision=" + TipoTransmision + ", NumAsientos=" + NumAsientos + '}';
+        //System.out.println(super.toString());
+        return "Automovil \n Tipo de Combustible=" + TipoCombustible + "\nNumero de Puertas=" + NumPuertas + "\nTipo de Transmision=" + TipoTransmision + "\nNumero de Asientos=" + NumAsientos;
     }
     
     

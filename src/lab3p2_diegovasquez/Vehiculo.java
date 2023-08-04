@@ -81,7 +81,7 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "Placa=" + Placa + ", Marca=" + Marca + ", Modelo=" + Modelo + ", tipo=" + tipo + ", color=" + color + ", a\u00f1o=" + año + '}';
+        return "Placa=" + Placa + "\nMarca=" + Marca + "\nModelo=" + Modelo + "\nTipo=" + tipo + "\nColor=" + color + "\nA\u00f1o=" + año.getHours();
     }
     
     

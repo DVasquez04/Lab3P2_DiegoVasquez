@@ -100,7 +100,8 @@ public class Motocicleta extends Vehiculo{
 
     @Override
     public String toString() {
-        return "Motocicleta{" + "Velocidad=" + Velocidad + ", peso=" + peso + ", LitrosConsumidos=" + LitrosConsumidos + '}';
+        //System.out.println(super.toString());
+        return "Motocicleta \nVelocidad=" + Velocidad + "\npeso=" + peso + "\nLitrosn Consumidos=" + LitrosConsumidos;
     }
     
     
