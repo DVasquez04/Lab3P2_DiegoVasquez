@@ -151,32 +151,28 @@ public class Lab3P2_DiegoVasquez {
                     System.out.println("Ingrese el año: yyyy");
                     String año = lea.next();
                     Date Año = df.parse(año);
-                    System.out.println("Ingrese el tipo de combustible: (Diesel, Regular, Super)");
-                    String tipoComb = lea.next();
-                    System.out.println("Ingrese el numero de puertas: ");
-                    int numPuertas = lea.nextInt();
-                    while(numPuertas < 0){
-                        System.out.println("No se puede nums negativos xd\n Intentelo de nuevo: ");
-                        numPuertas = lea.nextInt();
-                    }//fin valid num
-                    System.out.println("Ingrese su tipo de transmision: (Automatica/Manual)");
-                    String trans = lea.next();
-                    boolean validT = true;
-                    while(validT){
-                        if(trans.equalsIgnoreCase("Automatica")||trans.equalsIgnoreCase("Manual")){
-                            validT = false;
-                        }else{
-                            System.out.println("Transmision invalida \nIntentelo de nuevo (Automatica/manual)");
-                            trans = lea.next();
-                        }
-                    }//fin while
-                    System.out.println("Ingrese el numero de asientos: ");
-                    int numAsientos = lea.nextInt();
-                    while(numAsientos < 0){
-                        System.out.println("Invalido intentelo de nuevo: ");
-                        numAsientos = lea.nextInt();
-                    }
-                    //agregar el automovil al arraylist
+                    System.out.println("Ingrese la velocidad: ");
+                    double vel = lea.nextDouble();
+                    while(vel < 0 ){
+                        System.out.println("Velocidad invalida \nIntentelo de nuevo:");
+                        vel = lea.nextDouble();
+                    }//fin valid
+                    System.out.println("Ingrese el peso");
+                    double peso = lea.nextDouble();
+                    while(peso < 0 ){
+                        System.out.println("Peso invalida \nIntentelo de nuevo:");
+                        peso = lea.nextDouble();
+                    }//fin valid
+                    System.out.println("Ingrese los litroc consumidos por Kilometro: ");
+                    double litros = lea.nextDouble();
+                    while(litros < 0 ){
+                        System.out.println("Cantidad de litros invalida \nIntentelo de nuevo:");
+                        litros = lea.nextDouble();
+                    }//fin valid
+                    Motocicleta moto = new Motocicleta(vel, peso, litros, placa, marca, modelo, tipo, color, Año);
+                    vehiculos.add(moto);
+                    System.out.println("Moto agregada exitosamente!");
+                    //agregar la moto al arraylist
                 }//fin case
                 break;
                 case 3:{
