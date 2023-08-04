@@ -76,7 +76,7 @@ public class Lab3P2_DiegoVasquez {
                     String modelo = lea.next();
                     System.out.println("Ingrese su tipo: (Turismo, Camioneta, etc.)");
                     String tipo = lea.next();
-                    Color color = JColorChooser.showDialog(null, "Ingrese el COlor", Color.WHITE);
+                    Color color = JColorChooser.showDialog(null, "Ingrese el Color", Color.WHITE);
                     System.out.println("Ingrese el año: yyyy");
                     String año = lea.next();
                     Date Año = df.parse(año);
@@ -145,9 +145,9 @@ public class Lab3P2_DiegoVasquez {
                     String marca = lea.next();
                     System.out.println("Ingrese el modelo: ");
                     String modelo = lea.next();
-                    System.out.println("Ingrese su tipo: (Harvey, Yamaha, etc.)");
+                    System.out.println("Ingrese su tipo: (Motonete, Motocicleta)");
                     String tipo = lea.next();
-                    Color color = JColorChooser.showDialog(null, "Ingrese el COlor", Color.WHITE);
+                    Color color = JColorChooser.showDialog(null, "Ingrese el Color", Color.WHITE);
                     System.out.println("Ingrese el año: yyyy");
                     String año = lea.next();
                     Date Año = df.parse(año);
@@ -242,9 +242,22 @@ public class Lab3P2_DiegoVasquez {
                 case 4:{
                     lea = new Scanner(System.in);
                     for (int i = 0; i < vehiculos.size(); i++) {
-                        System.out.println("Vehiculo "+i+"\n"+vehiculos.get(i).toString());
-                        System.out.println("");
-                    }//fin listar.
+                        System.out.println("Vehiculo "+i);
+                        if(vehiculos.get(i) instanceof Automovil){
+                            System.out.println(((Automovil)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }else if(vehiculos.get(i) instanceof Autobus){
+                            System.out.println(((Autobus)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }else{
+                            System.out.println(((Motocicleta)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }//fin listar
+                        
+                    }
                     System.out.println("");
                     System.out.println("Ingrese que vehiculo desea modificar: ");
                     int p = lea.nextInt();
@@ -381,16 +394,265 @@ public class Lab3P2_DiegoVasquez {
                                 System.out.println("Opcion Invalida \nNo se pudo modificar nada xd");
                             }
                             break;
-                        }
+                        }//fin automovil
+                    }else if(vehiculos.get(p) instanceof Autobus){
+                        System.out.println("""
+                                           =SUB MENU MODIFICACION AUTOBUS=
+                                           1.placa
+                                           2.marca
+                                           3.modelo
+                                           4.tipo
+                                           5.color
+                                           6.año
+                                           7.Capacidad Pasajeros
+                                           8.Numero de Ejes
+                                           9.Longitud""");
+                        int mod = lea.nextInt();
+                        switch(mod){
+                            case 1:{
+                                System.out.println("Ingrese la nueva placa: ");
+                                String placa = lea.next();
+                                boolean valid = true;
+                                while(valid){
+                                    boolean placaRep = false;
+                                    for (int i = 0; i < vehiculos.size(); i++) {
+                                        if(placa.equalsIgnoreCase(vehiculos.get(i).getPlaca())){
+                                            placaRep = true;
+                                        }
+                                    }//fin for
+                                    if(placaRep == false){
+                                        if(placa.startsWith("H")){
+                                            if(ValidPlaca(placa)){
+                                                valid = false;
+                                            }else{
+                                                System.out.println("Placa invalida, intentela de nuevo");
+                                                placa = lea.next().toUpperCase();
+                                            }//fin else
+                                        }else{
+                                            System.out.println("Placa invalida, intentela de nuevo");
+                                            placa = lea.next().toUpperCase();
+                                        }//fin else
+                                    }else{
+                                        System.out.println("Placa Repetida \nIngrese otra: ");
+                                        placa = lea.next();
+                                    }//fin else placa repetida
+                                }//fin valid placa
+                                vehiculos.get(p).setPlaca(placa);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 2:{
+                                System.out.println("Ingrese la nueva marca: ");
+                                String marc = lea.next();
+                                vehiculos.get(p).setMarca(marc);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 3:{
+                                System.out.println("Ingrese el nuevo modelo: ");
+                                String modelo = lea.next();
+                                vehiculos.get(p).setModelo(modelo);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 4:{
+                                System.out.println("Ingrese el nuevo tipo: ");
+                                String tipo = lea.next();
+                                vehiculos.get(p).setTipo(tipo);
+                            }
+                            break;
+                            case 5:{
+                                Color ncolor = JColorChooser.showDialog(null, "Ingrese el nuevo color: ", Color.yellow);
+                                vehiculos.get(p).setColor(ncolor);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 6:{
+                                System.out.println("Ingrese el nuevo año: ");
+                                String año = lea.next();
+                                Date ano = df.parse(año);
+                                vehiculos.get(p).setAño(ano);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 7:{
+                                System.out.println("Ingrese la nueva capacidad de pasajeros: ");
+                                int cap = lea.nextInt();
+                                while(cap < 0){
+                                    System.out.println("Invalido, again: ");
+                                    cap = lea.nextInt();
+                                }
+                                ((Autobus)vehiculos.get(p)).setCapPasajeros(cap);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 8:{
+                                System.out.println("Ingrese la nueva cantidad de ejes: ");
+                                int ejes = lea.nextInt();
+                                while(ejes < 0){
+                                    System.out.println("Invalido, again: ");
+                                    ejes = lea.nextInt();
+                                }
+                                ((Autobus)vehiculos.get(p)).setNumEjes(ejes);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 9:{
+                                System.out.println("Ingrese la nueva longitud: ");
+                                double lo = lea.nextDouble();
+                                while(lo < 0){
+                                    System.out.println("Invalido, again: ");
+                                    lo = lea.nextDouble();
+                                }
+                                ((Autobus)vehiculos.get(p)).setLongitud(lo);
+                                System.out.println("MOdificacion Exitosa");
+                            }
+                            break;
+                            default:{
+                                System.out.println("Opcion Invalida \nNo se pudo modificar nada xd");
+                            }
+                            break;
+                        }//fin Autobus
+                    }else{
+                        System.out.println("""
+                                           =SUB MENU MODIFICACION AUTOBUS=
+                                           1.placa
+                                           2.marca
+                                           3.modelo
+                                           4.tipo
+                                           5.color
+                                           6.año
+                                           7.Velocidad
+                                           8.Peso
+                                           9.Litros Consumidos""");
+                        int mod = lea.nextInt();
+                        switch(mod){
+                            case 1:{
+                                System.out.println("Ingrese la nueva placa: ");
+                                String placa = lea.next();
+                                boolean valid = true;
+                                while(valid){
+                                    boolean placaRep = false;
+                                    for (int i = 0; i < vehiculos.size(); i++) {
+                                        if(placa.equalsIgnoreCase(vehiculos.get(i).getPlaca())){
+                                            placaRep = true;
+                                        }
+                                    }//fin for
+                                    if(placaRep == false){
+                                        if(placa.startsWith("B")){
+                                            if(ValidPlaca(placa)){
+                                                valid = false;
+                                            }else{
+                                                System.out.println("Placa invalida, intentela de nuevo");
+                                                placa = lea.next().toUpperCase();
+                                            }//fin else
+                                        }else{
+                                            System.out.println("Placa invalida, intentela de nuevo");
+                                            placa = lea.next().toUpperCase();
+                                        }//fin else
+                                    }else{
+                                        System.out.println("Placa Repetida \nIngrese otra: ");
+                                        placa = lea.next();
+                                    }//fin else placa repetida
+                                }//fin valid placa
+                                vehiculos.get(p).setPlaca(placa);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 2:{
+                                System.out.println("Ingrese la nueva marca: ");
+                                String marc = lea.next();
+                                vehiculos.get(p).setMarca(marc);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 3:{
+                                System.out.println("Ingrese el nuevo modelo: ");
+                                String modelo = lea.next();
+                                vehiculos.get(p).setModelo(modelo);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 4:{
+                                System.out.println("Ingrese el nuevo tipo: ");
+                                String tipo = lea.next();
+                                vehiculos.get(p).setTipo(tipo);
+                            }
+                            break;
+                            case 5:{
+                                Color ncolor = JColorChooser.showDialog(null, "Ingrese el nuevo color: ", Color.yellow);
+                                vehiculos.get(p).setColor(ncolor);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 6:{
+                                System.out.println("Ingrese el nuevo año: ");
+                                String año = lea.next();
+                                Date ano = df.parse(año);
+                                vehiculos.get(p).setAño(ano);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 7:{
+                                System.out.println("Ingrese la nueva velocidad: ");
+                                double ve = lea.nextDouble();
+                                while(ve< 0){
+                                    System.out.println("Invalido, again: ");
+                                    ve = lea.nextDouble();
+                                }
+                                ((Motocicleta)vehiculos.get(p)).setVelocidad(ve);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 8:{
+                                System.out.println("Ingrese el nuevo peso: ");
+                                double pes = lea.nextDouble();
+                                while(pes< 0){
+                                    System.out.println("Invalido, again: ");
+                                    pes = lea.nextDouble();
+                                }
+                                ((Motocicleta)vehiculos.get(p)).setPeso(pes);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            case 9:{
+                                System.out.println("Ingrese Los nuevos litros consumidos por kilometro: ");
+                                double lit = lea.nextDouble();
+                                while(lit< 0){
+                                    System.out.println("Invalido, again: ");
+                                    lit = lea.nextDouble();
+                                }
+                                ((Motocicleta)vehiculos.get(p)).setLitrosConsumidos(lit);
+                                System.out.println("Modificacion Exitosa");
+                            }
+                            break;
+                            default:{
+                                System.out.println("Opcion Invalida \nNo se pudo modificar nada xd");
+                            }
+                            break;
+                        }//fin Motocicleta
                     }
                 }//fin case
                 break;
                 case 5:{
                     lea = new Scanner(System.in);
                     for (int i = 0; i < vehiculos.size(); i++) {
-                        System.out.println("Vehiculo "+i+"\n"+vehiculos.get(i).toString());
-                        System.out.println("");
-                    }//fin listar.
+                        System.out.println("Vehiculo "+i);
+                        if(vehiculos.get(i) instanceof Automovil){
+                            System.out.println(((Automovil)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }else if(vehiculos.get(i) instanceof Autobus){
+                            System.out.println(((Autobus)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }else{
+                            System.out.println(((Motocicleta)vehiculos.get(i)).toString());
+                            System.out.println("");
+                            
+                        }//fin listar
+                        
+                    }
                     System.out.println("");
                     System.out.println("Ingrese que vehiculo desea modificar: ");
                     int p = lea.nextInt();
@@ -407,7 +669,7 @@ public class Lab3P2_DiegoVasquez {
                     int contBuses = 0;
                     int contMotos = 0;
                     for (int i = 0; i < vehiculos.size(); i++) {
-                        System.out.println("Vehiculo "+i+"\n");
+                        System.out.println("Vehiculo "+i);
                         if(vehiculos.get(i) instanceof Automovil){
                             System.out.println(((Automovil)vehiculos.get(i)).toString());
                             System.out.println("");
@@ -430,7 +692,7 @@ public class Lab3P2_DiegoVasquez {
                 case 7:{
                     //generar boleta
                     for (int i = 0; i < vehiculos.size(); i++) {
-                        System.out.println("Vehiculo "+i+"\n");
+                        System.out.println("Vehiculo "+i);
                         if(vehiculos.get(i) instanceof Automovil){
                             System.out.println(((Automovil)vehiculos.get(i)).toString());
                             System.out.println("");
@@ -442,9 +704,27 @@ public class Lab3P2_DiegoVasquez {
                         }else{
                             System.out.println(((Motocicleta)vehiculos.get(i)).toString());
                             System.out.println("");
-                            
                         }
+                    }//fin listar
+                    System.out.println("Ingrese que vehiculo sacarle la revision: ");
+                    int p = lea.nextInt();
+                    while(p < 0 || p > vehiculos.size()-1){
+                        System.out.println("Out Of Bounds \nIntentelo de nuevo: ");
+                        p = lea.nextInt();
                     }
+                    System.out.println("=BOLETA DE REVISION VEHICULAR=");
+                    System.out.println(vehiculos.get(p).toString());
+                    System.out.println("");
+                    double ValorFinal = (275+250);
+                    if(vehiculos.get(p) instanceof Automovil){
+                        ValorFinal += 1200;
+                    }else if(vehiculos.get(p) instanceof Autobus){
+                        ValorFinal += 1000;
+                    }else{
+                        ValorFinal += 200;
+                    }
+                    System.out.println("Valor Final: "+ValorFinal+" Lempiras");
+                    
                 }//fin case
                 break;
                 case 8:{
