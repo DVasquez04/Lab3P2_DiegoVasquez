@@ -47,17 +47,28 @@ public class Lab3P2_DiegoVasquez {
                     String placa = lea.next().toUpperCase();
                     boolean valid = true;
                     while(valid){
-                        if(placa.startsWith("H")){
-                            if(ValidPlaca(placa)){
-                                valid = false;
+                        boolean placaRep = false;
+                        for (int i = 0; i < 10; i++) {
+                            if(placa.equalsIgnoreCase(vehiculos.get(i).getPlaca())){
+                                placaRep = true;
+                            }
+                        }//fin for
+                        if(placaRep == false){
+                            if(placa.startsWith("H")){
+                                if(ValidPlaca(placa)){
+                                    valid = false;
+                                }else{
+                                    System.out.println("Placa invalida, intentela de nuevo");
+                                    placa = lea.next().toUpperCase();
+                                }//fin else
                             }else{
                                 System.out.println("Placa invalida, intentela de nuevo");
                                 placa = lea.next().toUpperCase();
                             }//fin else
                         }else{
-                            System.out.println("Placa invalida, intentela de nuevo");
-                            placa = lea.next().toUpperCase();
-                        }//fin else
+                            System.out.println("Placa Repetida \nIngrese otra: ");
+                            placa = lea.next();
+                        }//fin else placa repetida
                     }//fin valid placa
                     System.out.println("Ingrese la marca: ");
                     String marca = lea.next();
@@ -73,11 +84,99 @@ public class Lab3P2_DiegoVasquez {
                     String tipoComb = lea.next();
                     System.out.println("Ingrese el numero de puertas: ");
                     int numPuertas = lea.nextInt();
-                    
+                    while(numPuertas < 0){
+                        System.out.println("No se puede nums negativos xd\n Intentelo de nuevo: ");
+                        numPuertas = lea.nextInt();
+                    }//fin valid num
+                    System.out.println("Ingrese su tipo de transmision: (Automatica/Manual)");
+                    String trans = lea.next();
+                    boolean validT = true;
+                    while(validT){
+                        if(trans.equalsIgnoreCase("Automatica")||trans.equalsIgnoreCase("Manual")){
+                            validT = false;
+                        }else{
+                            System.out.println("Transmision invalida \nIntentelo de nuevo (Automatica/manual)");
+                            trans = lea.next();
+                        }
+                    }//fin while
+                    System.out.println("Ingrese el numero de asientos: ");
+                    int numAsientos = lea.nextInt();
+                    while(numAsientos < 0){
+                        System.out.println("Invalido intentelo de nuevo: ");
+                        numAsientos = lea.nextInt();
+                    }
+                    //agregar el automovil al arraylist
+                    Automovil auto = new Automovil(tipoComb, numPuertas, trans, numAsientos, placa, marca, modelo, tipo, color, Año);
+                    vehiculos.add(auto);
+                    System.out.println("Vehiculo agregado exitosamente!");
                 }//fin case
                 break;
                 case 2:{
-                    
+                    //Motocicleta
+                    lea = new Scanner(System.in);
+                    System.out.println("Ingrese la placa: ");
+                    String placa = lea.next().toUpperCase();
+                    boolean valid = true;
+                    while(valid){
+                        boolean placaRep = false;
+                        for (int i = 0; i < 10; i++) {
+                            if(placa.equalsIgnoreCase(vehiculos.get(i).getPlaca())){
+                                placaRep = true;
+                            }
+                        }//fin for
+                        if(placaRep == false){
+                            if(placa.startsWith("B")){
+                                if(ValidPlaca(placa)){
+                                    valid = false;
+                                }else{
+                                    System.out.println("Placa invalida, intentela de nuevo");
+                                    placa = lea.next().toUpperCase();
+                                }//fin else
+                            }else{
+                                System.out.println("Placa invalida, intentela de nuevo");
+                                placa = lea.next().toUpperCase();
+                            }//fin else
+                        }else{
+                            System.out.println("Placa Repetida \nIngrese otra: ");
+                            placa = lea.next();
+                        }//fin else placa repetida
+                    }//fin valid placa
+                    System.out.println("Ingrese la marca: ");
+                    String marca = lea.next();
+                    System.out.println("Ingrese el modelo: ");
+                    String modelo = lea.next();
+                    System.out.println("Ingrese su tipo: (Harvey, Yamaha, etc.)");
+                    String tipo = lea.next();
+                    Color color = JColorChooser.showDialog(null, "Ingrese el COlor", Color.WHITE);
+                    System.out.println("Ingrese el año: yyyy");
+                    String año = lea.next();
+                    Date Año = df.parse(año);
+                    System.out.println("Ingrese el tipo de combustible: (Diesel, Regular, Super)");
+                    String tipoComb = lea.next();
+                    System.out.println("Ingrese el numero de puertas: ");
+                    int numPuertas = lea.nextInt();
+                    while(numPuertas < 0){
+                        System.out.println("No se puede nums negativos xd\n Intentelo de nuevo: ");
+                        numPuertas = lea.nextInt();
+                    }//fin valid num
+                    System.out.println("Ingrese su tipo de transmision: (Automatica/Manual)");
+                    String trans = lea.next();
+                    boolean validT = true;
+                    while(validT){
+                        if(trans.equalsIgnoreCase("Automatica")||trans.equalsIgnoreCase("Manual")){
+                            validT = false;
+                        }else{
+                            System.out.println("Transmision invalida \nIntentelo de nuevo (Automatica/manual)");
+                            trans = lea.next();
+                        }
+                    }//fin while
+                    System.out.println("Ingrese el numero de asientos: ");
+                    int numAsientos = lea.nextInt();
+                    while(numAsientos < 0){
+                        System.out.println("Invalido intentelo de nuevo: ");
+                        numAsientos = lea.nextInt();
+                    }
+                    //agregar el automovil al arraylist
                 }//fin case
                 break;
                 case 3:{
